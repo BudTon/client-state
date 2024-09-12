@@ -1,9 +1,10 @@
 const modal = document.getElementById('subscribe-modal')
 const modalClose = document.querySelector('.modal__close')
 
-try {
-    getCookie('popup') === 'active';
-} catch {
+
+if (getCookie('popup') === 'active') {
+    modal.classList.remove('modal_active');
+} else {
     modal.classList.add('modal_active');
 }
 
@@ -13,12 +14,15 @@ modalClose.addEventListener('click', () => {
 })
 
 function setCookie(name, value) {
-    document.cookie = name + '=' + encodeURIComponent(value)
+    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
 }
 
 function getCookie(key) {
     const pairs = document.cookie.split('; ')
     const cookie = pairs.find(p => p.startsWith(key + '='))
+    if (cookie === undefined) {
+        return null
+    }  
     return cookie.substring(key.length + 1)
 }
 
