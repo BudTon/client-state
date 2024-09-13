@@ -16,16 +16,12 @@ formPost.addEventListener('submit', (e) => {
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.addEventListener('load', () => {
-        if (xhr.readyState === xhr.DONE) {
-            let data = xhr.response;
-            if (data.success === false) {
-                alert('Неверный логин/пароль');
-            } else if (data.success === true) {
-                localStorage.setItem('user_id', data.user_id);
-                talkWelcome(data.user_id);
-            }
-        } else {
-            alert('Загрузка отменена.');
+        let data = xhr.response;
+        if (data.success === false) {
+            alert('Неверный логин/пароль');
+        } else if (data.success === true) {
+            localStorage.setItem('user_id', data.user_id);
+            talkWelcome(data.user_id);
         }
     })
 

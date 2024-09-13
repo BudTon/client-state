@@ -5,7 +5,7 @@ const button = document.getElementById('reset')
 
 const storedText = localStorage.getItem('text');
 
-textArea.addEventListener('change', (e) => {
+textArea.addEventListener('input', (e) => {
     let text = e.target.value
     localStorage.setItem('text', text)
 })
